@@ -7,11 +7,25 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "type": "module",
+    "start": "npx tsc && node dest/app.js",
+  
+    "knex:migrate:make": "knex migrate:make --knexfile ./src/database/knexfile.ts -x ts",
+    "knex:migrate:latest": "knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "knex:migrate:rollback": "knex migrate:rollback --knexfile ./src/database/knexfile.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }

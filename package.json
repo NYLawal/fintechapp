@@ -9,7 +9,6 @@
   "scripts": {
     "type": "module",
     "start": "npx tsc && node dest/app.js",
-  
     "knex:migrate:make": "knex migrate:make --knexfile ./src/database/knexfile.ts -x ts",
     "knex:migrate:latest": "knex migrate:latest --knexfile ./src/database/knexfile.ts",
     "knex:migrate:rollback": "knex migrate:rollback --knexfile ./src/database/knexfile.ts"

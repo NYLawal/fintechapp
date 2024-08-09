@@ -2,14 +2,24 @@ import express, {Application, Request, Response} from "express"
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const app: Application = express()
+import db from "./database/connect";
 
-const port: number = 4000
+const app: Application = express()
+const port:number = Number(String(process.env.PORT)) || 4000
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello and welcome to typescript with postgresql")
 })
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
+// establish and ensure database connection 
+db.raw("SELECT 1").then(() => {
+    console.log("PostgreSQL connected");
+    app.listen(port, () => {
+        console.log(`Server listening on port ${port}`)
+    })
 })
+.catch((e) => {
+    console.log("PostgreSQL not connected");
+    console.error(e);
+});
+
